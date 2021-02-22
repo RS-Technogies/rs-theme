@@ -14,9 +14,6 @@
     'services'=>[]
 ]) ?>
 <?php get_template_part("page-templates/home/cta", null, []) ?>
-<?php get_template_part("page-templates/home/portfolio", null, [
-    'content'=>'Content',
-    'portfolio'=>[]
-]) ?>
+<?php get_template_part("page-templates/home/portfolio", null) ?>
 <?php get_template_part("page-templates/home/contact", null, []) ?>
 <?php get_footer(); ?>

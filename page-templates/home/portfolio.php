@@ -1,4 +1,11 @@
-<?php extract($args); ?>
+<?php
+$portfolio = get_posts([
+    'post_type' => 'portfolio',
+]);
+$terms = get_terms( 'portfolio_areas', array(
+    'hide_empty' => true,
+) );
+?>
 
 <!-- ======= Portfolio Section ======= -->
 <section id="portfolio" class="portfolio">
@@ -6,27 +13,29 @@
 
         <div class="section-title">
             <h2>Portfolio</h2>
-            <p><?php echo $content; ?></p>
         </div>
 
         <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li>
+            <?php foreach($terms as $term): ?>
+                <li data-filter=".filter-<?php echo $term->slug ?>"><?php echo $term->name ?></li>
+            <?php endforeach ?>
         </ul>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
             <?php foreach ($portfolio as $pt) : ?>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                    <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt=""></div>
+                <?php $terms=get_the_terms($pt,"portfolio_areas");  ?>
+                <div class="col-lg-4 col-md-6 portfolio-item <?php echo !empty($terms)?"filter-".current($terms)->slug:"" ?>">
+                    <div class="portfolio-img">
+                        <img src="<?php echo get_the_post_thumbnail_url($pt); ?>" class="img-fluid" alt="<?php echo $pt->post_title ?>">
+                    </div>
                     <div class="portfolio-info">
-                        <h4>App 1</h4>
+                        <h4><?php echo $pt->post_title ?></h4>
                         <p>App</p>
-                        <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 1">
+                        <a href="<?php echo get_the_post_thumbnail_url($pt) ?>" data-gall="portfolioGallery" class="venobox preview-link" title="App 1">
                             <i class="bx bx-plus"></i>
                         </a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details">
+                        <a href="<?php echo get_permalink($pt); ?>" class="details-link" title="More Details">
                             <i class="bx bx-link"></i>
                         </a>
                     </div>
