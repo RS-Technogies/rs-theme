@@ -1,4 +1,22 @@
 <?php get_header(); ?>
-
-
+<?php get_template_part("page-templates/home/banner", null, [
+    "title" => "Better Solutions For Your Business",
+    "sub_title" => "We are team of talanted designers making websites with Bootstrap",
+    "btn_text" => "Get Started",
+    "btn_url" => "/about",
+    "video_url" => ""
+]) ?>
+<?php get_template_part("page-templates/home/about", null, [
+    'content'=>'Hello Boyd'
+]) ?>
+<?php get_template_part("page-templates/home/services", null, [
+    'content'=>"Hello",
+    'services'=>[]
+]) ?>
+<?php get_template_part("page-templates/home/cta", null, []) ?>
+<?php get_template_part("page-templates/home/portfolio", null, [
+    'content'=>'Content',
+    'portfolio'=>[]
+]) ?>
+<?php get_template_part("page-templates/home/contact", null, []) ?>
 <?php get_footer(); ?>

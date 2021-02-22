@@ -13,9 +13,14 @@
     <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo me-auto"><a href="index.html">Arsha</a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            <?php if(!has_custom_logo()): ?>    
+            <h1 class="logo me-auto">
+                <a href="<?php echo get_site_url(); ?>"><?php echo get_bloginfo("name") ?></a>
+            </h1>
+            <?php else: ?>
+                <?php the_custom_logo(); ?>
+            <?php endif; ?>
+            
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
