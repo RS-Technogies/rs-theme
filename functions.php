@@ -19,6 +19,7 @@ function hide_editor() {
 
 function wpdocs_theme_name_scripts() {
     
+    wp_enqueue_style( 'bootstrap', CHILD_VENDOR_URL."bootstrap/css/bootstrap.min.css" );
     wp_enqueue_style( 'icofont', CHILD_VENDOR_URL."icofont/icofont.min.css" );
     wp_enqueue_style( 'boxicons', CHILD_VENDOR_URL."boxicons/css/boxicons.min.css" );
     wp_enqueue_style( 'remixicon', CHILD_VENDOR_URL."remixicon/remixicon.css" );
