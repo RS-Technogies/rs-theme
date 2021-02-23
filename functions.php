@@ -4,6 +4,20 @@ define("CHILD_URL",get_stylesheet_directory_uri());
 define("CHILD_VENDOR_URL",get_stylesheet_directory_uri()."/assets/vendor/");
 define("CHILD_JS_URL",get_stylesheet_directory_uri()."/assets/js/");
 
+
+add_action( 'admin_init', 'hide_editor' );
+ 
+function hide_editor() {
+    $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
+    if( !isset( $post_id ) ) return;
+ 
+    
+     
+    if($post_id===intval(get_option('page_on_front'))){ // edit the template name
+        remove_post_type_support('page', 'editor');
+    }
+}
+
 function wpdocs_theme_name_scripts() {
     
     wp_enqueue_style( 'icofont', CHILD_VENDOR_URL."icofont/icofont.min.css" );
