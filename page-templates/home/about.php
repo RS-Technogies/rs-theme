@@ -8,7 +8,7 @@
         </div>
 
         <div class="row content">
-            <?php $content ?>
+            <?php echo $content ?>
         </div>
 
     </div>
