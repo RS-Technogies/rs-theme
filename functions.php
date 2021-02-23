@@ -11,9 +11,8 @@ function hide_editor() {
     $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
     if( !isset( $post_id ) ) return;
  
-    
-     
-    if($post_id===intval(get_option('page_on_front'))){ // edit the template name
+ 
+    if(intval($post_id)===intval(get_option('page_on_front'))){ // edit the template name
         remove_post_type_support('page', 'editor');
     }
 }
