@@ -1,11 +1,4 @@
-<?php
-$portfolio = get_posts([
-    'post_type' => 'portfolio',
-]);
-$terms = get_terms( 'portfolio_areas', array(
-    'hide_empty' => true,
-) );
-?>
+<?php extract($args)?>
 
 <!-- ======= Portfolio Section ======= -->
 <section id="portfolio" class="portfolio">
@@ -35,7 +28,7 @@ $terms = get_terms( 'portfolio_areas', array(
                         <a href="<?php echo get_the_post_thumbnail_url($pt) ?>" data-gall="portfolioGallery" class="venobox preview-link" title="App 1">
                             <i class="bx bx-plus"></i>
                         </a>
-                        <a href="<?php echo get_permalink($pt); ?>" class="details-link" title="More Details">
+                        <a href="<?php echo $pt->permalink; ?>" class="details-link" title="More Details">
                             <i class="bx bx-link"></i>
                         </a>
                     </div>

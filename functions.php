@@ -1,5 +1,6 @@
 <?php 
-
+define("HASHTAG_THEME_VERSION","1.0.0");    
+define("HASHTAG_SCRIPT_VERSION","1.0.0");    
 define("CHILD_URL",get_stylesheet_directory_uri());
 define("CHILD_VENDOR_URL",get_stylesheet_directory_uri()."/assets/vendor/");
 define("CHILD_JS_URL",get_stylesheet_directory_uri()."/assets/js/");
@@ -19,7 +20,8 @@ function hide_editor() {
 
 function wpdocs_theme_name_scripts() {
     
-    wp_enqueue_style( 'bootstrap', CHILD_VENDOR_URL."bootstrap/css/bootstrap.min.css" );
+    wp_enqueue_style( 'bootstrap', CHILD_VENDOR_URL."bootstrap/css/bootstrap.min.css",[]);
+    wp_enqueue_style( 'fontawesome', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" );
     wp_enqueue_style( 'icofont', CHILD_VENDOR_URL."icofont/icofont.min.css" );
     wp_enqueue_style( 'boxicons', CHILD_VENDOR_URL."boxicons/css/boxicons.min.css" );
     wp_enqueue_style( 'remixicon', CHILD_VENDOR_URL."remixicon/remixicon.css" );
@@ -48,8 +50,17 @@ add_action('wp_head',function(){
     endif;
 });
 
+add_action( 'after_setup_theme', 'mytheme_register_nav_menu', 0 );
+
+function mytheme_register_nav_menu(){
+    register_nav_menus( array(
+        'footer_menu'  => __( 'Footer Menu', 'text_domain' ),
+    ) );
+}
+
 function theme_init() {
-    add_theme_support( 'post-thumbnails' );
+    add_theme_support( 'post-thumbnails','widgets' );
+    
     $labels = array(
         'name'                  => _x( 'Portfolios', 'Post type general name', 'rs-theme' ),
         'singular_name'         => _x( 'Portfolio', 'Post type singular name', 'rs-theme' ),
@@ -122,3 +133,4 @@ function theme_init() {
     register_post_type( 'Portfolio', $args );
 }
 add_action( 'init', 'theme_init' );
+
