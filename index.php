@@ -17,6 +17,7 @@
     if(!empty($portfolio)){
         $portfolio=array_map(function($pt){
             $pt->permalink=get_permalink($pt->ID);
+            $pt->external_url=get_field("external_link");
             return $pt;
         },$portfolio);
     }
@@ -48,7 +49,8 @@
     "sub_title" => "We are team of talanted developers making applications and websites",
     "btn_text" => "Get Started",
     "btn_url" => "/about",
-    "video_url" => ""
+    "video_url" => "",
+    "featured_image"=>wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()))
 ]) ?>
 <?php get_template_part("page-templates/home/about", null, [
     'content'=>$about_content
