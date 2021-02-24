@@ -16,10 +16,9 @@
                 <p><?php echo $cta["description"]; ?></p>
             </div>
             <?php if(!empty($cta['link'])): ?>
-
-                <?php var_dump($cta["link"]); ?>
-                <div class="col-lg-3 cta-btn-container text-center">
-                    <a class="cta-btn align-middle" href="#">Call To Action</a>
+                <div class="col-lg-3 cta-btn-container text-center" href="<?php echo $cta["link"]["url"] ?>"
+                        target="<?php echo $cta["link"]["target"] ?>">
+                    <a class="cta-btn align-middle" href="#"><?php echo $cta["link"]["title"]; ?></a>
                 </div>
             <?php endif; ?>
         </div>
