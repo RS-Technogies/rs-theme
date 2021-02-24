@@ -13,6 +13,7 @@
     $services=get_field("services");
     $portfolio = get_posts([
         'post_type' => 'portfolio',
+        'numberposts'=>'-1'
     ]);
     if(!empty($portfolio)){
         $portfolio=array_map(function($pt){
