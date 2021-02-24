@@ -1,15 +1,25 @@
+<?php 
+    extract($args); 
+    $cta=isset($cta)&&is_array($cta)?$cta:[
+        'title'=>"",
+        "description"=>"",
+        "background_color"=>"",
+        "link"=>[]
+    ]; 
+?>
 <!-- ======= Cta Section ======= -->
-<section id="cta" class="cta">
+<section id="cta" class="cta" style="background-color:<?php echo $cta["background_color"] ?>">
     <div class="container" data-aos="zoom-in">
-
         <div class="row">
             <div class="col-lg-9 text-center text-lg-left">
-                <h3>Call To Action</h3>
-                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h3><?php echo $title; ?></h3>
+                <p><?php echo $description; ?></p>
             </div>
-            <div class="col-lg-3 cta-btn-container text-center">
-                <a class="cta-btn align-middle" href="#">Call To Action</a>
-            </div>
+            <?php if(!empty($cta['link'])): ?>
+                <div class="col-lg-3 cta-btn-container text-center">
+                    <a class="cta-btn align-middle" href="#">Call To Action</a>
+                </div>
+            <?php endif; ?>
         </div>
 
     </div>

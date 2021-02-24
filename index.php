@@ -15,6 +15,7 @@
         'post_type' => 'portfolio',
         'numberposts'=>'-1'
     ]);
+    $cta = get_field('call_to_action');
     if(!empty($portfolio)){
         $portfolio=array_map(function($pt){
             $pt->permalink=get_permalink($pt->ID);
@@ -61,7 +62,7 @@
     'services'=>$services
 ]) ?>
 <?php get_template_part("page-templates/home/cta", null, [
-
+    'cta'=>$cta
 ]) ?>
 <?php get_template_part("page-templates/home/portfolio", null,[
     'portfolio'=>$portfolio,
