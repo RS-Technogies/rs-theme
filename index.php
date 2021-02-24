@@ -18,7 +18,7 @@
     if(!empty($portfolio)){
         $portfolio=array_map(function($pt){
             $pt->permalink=get_permalink($pt->ID);
-            $pt->external_url=get_field("external_link");
+            $pt->external_url=get_field("external_link",$pt->ID);
             return $pt;
         },$portfolio);
     }

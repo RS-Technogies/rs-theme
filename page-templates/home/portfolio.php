@@ -17,7 +17,7 @@
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
             <?php foreach ($portfolio as $pt) : ?>
-                <?php $terms=get_the_terms($pt,"portfolio_areas"); $img_url= get_the_post_thumbnail_url($pt); var_dump($pt);   ?>
+                <?php $terms=get_the_terms($pt,"portfolio_areas"); $img_url= get_the_post_thumbnail_url($pt);   ?>
                 <div class="col-lg-4 col-md-6 portfolio-item <?php echo !empty($terms)?"filter-".current($terms)->slug:"" ?>">
                     <div class="portfolio-img">
                         <img src="<?php echo $img_url; ?>" class="img-fluid" alt="<?php echo $pt->post_title ?>">
