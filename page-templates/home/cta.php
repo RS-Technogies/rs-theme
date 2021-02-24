@@ -12,8 +12,8 @@
     <div class="container" data-aos="zoom-in">
         <div class="row">
             <div class="col-lg-9 text-center text-lg-left">
-                <h3><?php echo $title; ?></h3>
-                <p><?php echo $description; ?></p>
+                <h3><?php echo $cta["title"]; ?></h3>
+                <p><?php echo $cta["description"]; ?></p>
             </div>
             <?php if(!empty($cta['link'])): ?>
                 <div class="col-lg-3 cta-btn-container text-center">
