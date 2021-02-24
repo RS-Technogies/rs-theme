@@ -29,7 +29,7 @@
                             title="<?php echo $pt->post_title ?>">
                             <i class="bx bx-plus"></i>
                         </a>
-                        <a href="<?php echo $pt->external_url; ?>" class="details-link" title="View Portfolio">
+                        <a href="<?php echo $pt->external_url; ?>" target="_blank" class="details-link" title="View Portfolio">
                             <i class="bx bx-link" target="_blank"></i>
                         </a>
                     </div>
