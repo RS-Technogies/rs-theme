@@ -29,7 +29,7 @@
                     <ul>
                         <?php foreach($portfolio as $pt): ?>
                             <li><i class="bx bx-chevron-right"></i> 
-                                <a href="<?php echo $pt->permalink ?>">
+                                <a href="<?php echo $pt->external_link ?>" target="_blank">
                                     <?php echo $pt->post_title ?>
                                 </a>
                             </li>
