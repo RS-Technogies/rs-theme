@@ -1,25 +1,25 @@
-<?php 
-define("HASHTAG_THEME_VERSION","1.0.0");    
-define("HASHTAG_SCRIPT_VERSION","1.0.0");    
+<?php
+define("HASHTAG_THEME_VERSION","1.0.0");
+define("HASHTAG_SCRIPT_VERSION","1.0.0");
 define("CHILD_URL",get_stylesheet_directory_uri());
 define("CHILD_VENDOR_URL",get_stylesheet_directory_uri()."/assets/vendor/");
 define("CHILD_JS_URL",get_stylesheet_directory_uri()."/assets/js/");
 
 
-add_action( 'admin_init', 'hide_editor' );
- 
-function hide_editor() {
-    $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
-    if( !isset( $post_id ) ) return;
- 
- 
-    if(intval($post_id)===intval(get_option('page_on_front'))){ // edit the template name
-        remove_post_type_support('page', 'editor');
-    }
-}
+// add_action( 'admin_init', 'hide_editor' );
+
+// function hide_editor() {
+//     $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
+//     if( !isset( $post_id ) ) return;
+
+
+//     if(intval($post_id)===intval(get_option('page_on_front'))){ // edit the template name
+//         remove_post_type_support('page', 'editor');
+//     }
+// }
 
 function wpdocs_theme_name_scripts() {
-    
+
     wp_enqueue_style( 'bootstrap', CHILD_VENDOR_URL."bootstrap/css/bootstrap.min.css",[]);
     wp_enqueue_style( 'fontawesome', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" );
     wp_enqueue_style( 'icofont', CHILD_VENDOR_URL."icofont/icofont.min.css" );
@@ -46,8 +46,7 @@ add_action('wp_head',function(){
             margin-top:32px;
         }
     </style>
-<?php
-    endif;
+<?php endif;
 });
 
 add_action( 'after_setup_theme', 'mytheme_register_nav_menu', 0 );
@@ -59,8 +58,8 @@ function mytheme_register_nav_menu(){
 }
 
 function theme_init() {
-    add_theme_support( 'post-thumbnails','widgets' );
-    
+
+
     $labels = array(
         'name'                  => _x( 'Portfolios', 'Post type general name', 'rs-theme' ),
         'singular_name'         => _x( 'Portfolio', 'Post type singular name', 'rs-theme' ),
@@ -86,7 +85,7 @@ function theme_init() {
         'filter_items_list'     => _x( 'Filter portfolios list', 'Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4', 'rs-theme' ),
         'items_list_navigation' => _x( 'portfolios list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4', 'rs-theme' ),
         'items_list'            => _x( 'portfolios list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'rs-theme' ),
-    );     
+    );
     $args = array(
         'labels'             => $labels,
         'description'        => 'Portfolio custom post type.',
@@ -102,6 +101,40 @@ function theme_init() {
         'menu_position'      => 20,
         'supports'           => array( 'title', 'editor', 'author', 'thumbnail' ),
         'taxonomies'         => array( 'portfolio_areas', 'post_tag' ),
+        'show_in_rest'       => true
+    );
+
+
+    $testimonial_label = array(
+        'name'                  => _x( 'Testimonial', 'Post type general name', 'rs-theme' ),
+        'singular_name'         => _x( 'Testimonial', 'Post type singular name', 'rs-theme' ),
+        'menu_name'             => _x( 'Testimonial', 'Admin Menu text', 'rs-theme' ),
+        'name_admin_bar'        => _x( 'Testimonial', 'Add New on Toolbar', 'rs-theme' ),
+        'add_new'               => __( 'Add New', 'rs-theme' ),
+        'add_new_item'          => __( 'Add New Testimonial', 'rs-theme' ),
+        'new_item'              => __( 'New Testimonial', 'rs-theme' ),
+        'edit_item'             => __( 'Edit Testimonial', 'rs-theme' ),
+        'view_item'             => __( 'View Testimonial', 'rs-theme' ),
+        'all_items'             => __( 'All Testimonial', 'rs-theme' ),
+        'search_items'          => __( 'Search Testimonial', 'rs-theme' ),
+        'parent_item_colon'     => __( 'Parent Testimonial:', 'rs-theme' ),
+
+    );
+    $testimonial_args = array(
+        'labels'             => $testimonial_label,
+        'description'        => 'Testimonial custom post type.',
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'rs-theme-testimonial' ),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 20,
+        'supports'           => array( 'title', 'editor', 'author', 'thumbnail' ),
+        'taxonomies'         => array('post_tag' ),
         'show_in_rest'       => true
     );
 
@@ -129,8 +162,9 @@ function theme_init() {
         'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
         ),
     ));
-      
+
     register_post_type( 'Portfolio', $args );
+    register_post_type( 'Testimonial', $testimonial_args );
 }
 add_action( 'init', 'theme_init' );
 
